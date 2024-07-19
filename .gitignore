@@ -1,0 +1,7 @@
+media
+db.sqlite3
+env
+venv
+__pycache__
+main/migrations/**
+!main/migrations/__init__.py

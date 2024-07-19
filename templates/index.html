@@ -1,0 +1,60 @@
+    {% extends 'base.html' %}
+
+    {% block content %}
+        <div class="row">
+            <!-- Teachers start -->
+             
+            <div class="col">
+              <h5 class="display-9">Teachers</h5>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Fullname</th>
+                        <th scope="col">Level</th>
+                        <th scope="col">Hired</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for teacher in teachers %}
+                      <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{teacher.fullname}}</td>
+                        <td>{{teacher.level}}</td>
+                        <td>{{teacher.hire_time}}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+            </div>
+            <!-- Teachers end -->
+
+             <!-- Groups start -->
+            <div class="col">
+              <h5 class="display-9">Waiting Group</h5>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Level</th>
+                        <th scope="col">Students</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for group in groups %}
+                      <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td>{{group.title}}</td>
+                        <td>{{group.level}}</td>
+                        <td>{{group.students.count}}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+            </div>
+            <!-- Groups end -->
+
+        </div>
+         
+    {% endblock content %}
