@@ -41,7 +41,7 @@ Teacher.objects.all().delete()
 
 # Create Students
 students = []
-for _ in range(55):
+for _ in range(100):
     student = Student(
         fullname=fake.name(),
         phone=fake.phone_number(),
@@ -55,7 +55,7 @@ print('Successfully created 50 students.')
 
 # Create Groups
 groups = []
-for _ in range(25):
+for _ in range(50):
     group = Group(
         title=fake.word().capitalize() + ' Group',
         level=random.choice([choice[0] for choice in english_level]),
@@ -71,7 +71,7 @@ for _ in range(25):
 print('Successfully created 10 groups.')
 
 # Create Teachers
-for _ in range(10):
+for _ in range(100):
     teacher = Teacher(
         fullname=fake.name(),
         level=random.choice(teacher_level),

@@ -1,60 +1,91 @@
-    {% extends 'base.html' %}
 
-    {% block content %}
+{% extends 'base.html' %}
+
+{% block content %}
         <div class="row">
-            <!-- Teachers start -->
-             
-            <div class="col">
-              <h5 class="display-9">Teachers</h5>
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Fullname</th>
-                        <th scope="col">Level</th>
-                        <th scope="col">Hired</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {% for teacher in teachers %}
-                      <tr>
-                        <th scope="row">{{ forloop.counter }}</th>
-                        <td>{{teacher.fullname}}</td>
-                        <td>{{teacher.level}}</td>
-                        <td>{{teacher.hire_time}}</td>
-                      </tr>
-                      {% endfor %}
-                    </tbody>
-                  </table>
-            </div>
-            <!-- Teachers end -->
 
-             <!-- Groups start -->
+            <!-- Teacherlar -->
             <div class="col">
-              <h5 class="display-9">Waiting Group</h5>
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Level</th>
-                        <th scope="col">Students</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {% for group in groups %}
-                      <tr>
-                        <th scope="row">{{forloop.counter}}</th>
-                        <td>{{group.title}}</td>
-                        <td>{{group.level}}</td>
-                        <td>{{group.students.count}}</td>
-                      </tr>
-                      {% endfor %}
-                    </tbody>
-                  </table>
-            </div>
-            <!-- Groups end -->
+              <h1 class="title">Teachers</h1>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Fullname</th>
+                    <th scope="col">Level</th>
+                    <th scope="col">Hired</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for teacher in teachers %}
+                  <tr>
+                    <th scope="row">{{teacher.id}}</th>
+                    <td>{{ teacher.fullname }}</td>
+                    <td>{{teacher.level}}</td>
+                    <td>{{teacher.hire_time}}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  {% if teachers.has_previous  %}
+                  <li class="page-item">
+                    <a class="page-link" href="{% url 'lists:index_url' %}?page={{teachers.previous_page_number}}" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  {% else %}
+                  <li class="page-item disabled">
+                    <a class="page-link" href="" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  {% endif %}
 
+                  <li class="page-item"><a class="page-link" href="{% url 'lists:index_url' %}?page={{teachers.number}}">{{teachers.number}}</a></li>
+                  {% if teachers.has_next %}
+                  <li class="page-item">
+                    <a class="page-link" href="{% url 'lists:index_url' %}?page={{teachers.next_page_number}}" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                  {% else %}
+                  <li class="page-item disabled">
+                    <a class="page-link" href="" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                  {% endif %}
+                </ul>
+              </nav>
+            </div>
+            <!-- Teacherlar end -->
+            
+            <!-- GROup -->
+            <div class="col">
+              <h1 class="title">Waiting Groups</h1>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Level</th>
+                    <th scope="col">Students</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for group in groups %}
+                  <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{group.title}}</td>
+                    <td>{{group.level}}</td>
+                    <td>{{group.students.count}}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <!-- Group end -->
         </div>
-         
-    {% endblock content %}
+{% endblock content %}
